@@ -19,9 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.farmacia.Exercicio.Model.UserLogin;
-import com.farmacia.Exercicio.Model.UsuarioModel;
-import com.farmacia.Exercicio.Service.UsuarioService;
 import com.testetechsolutio.TechSolutio.model.UsuarioModel;
 import com.testetechsolutio.TechSolutio.model.UsuarioLogin;
 import com.testetechsolutio.TechSolutio.repository.UsuarioRepository;
@@ -35,7 +32,7 @@ public class UsuarioController {
 	private UsuarioRepository repositorio;
 	
 	@Autowired
-	private UsuarioService usuarioService;
+	private com.testetechsolutio.TechSolutio.service.UsuarioService usuarioService;
 
 	@GetMapping("/todes")
 	public ResponseEntity<List<UsuarioModel>> getAll() {

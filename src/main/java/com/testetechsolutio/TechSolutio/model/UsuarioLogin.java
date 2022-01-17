@@ -2,7 +2,7 @@ package com.testetechsolutio.TechSolutio.model;
 
 public class UsuarioLogin {
 	
-	private long Id;
+	private long idUsuario;
 
 	private String nome;
 	
@@ -11,14 +11,6 @@ public class UsuarioLogin {
 	private String senha;
 	
 	private String token;
-
-	public long getId() {
-		return Id;
-	}
-
-	public void setId(long id) {
-		Id = id;
-	}
 
 	public String getNome() {
 		return nome;
@@ -55,6 +47,15 @@ public class UsuarioLogin {
 	public long getIdUsuario() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public void setIdUsuario(long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public void setId(long idUsuario2) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

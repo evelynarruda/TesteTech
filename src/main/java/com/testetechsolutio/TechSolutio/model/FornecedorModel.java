@@ -28,8 +28,8 @@ public class FornecedorModel {
 		@NotBlank
 		private String tipoServico;
 
-		@OneToMany(mappedBy = "fornecedor", cascade = CascadeType.ALL)
-		@JsonIgnoreProperties("fornecedor")
+		@OneToMany(mappedBy = "idfornecedor", cascade = javax.persistence.CascadeType.ALL)
+		@JsonIgnoreProperties("idfornecedor")
 			
 		public Long getIdFornecedor() {
 			return idFornecedor;
@@ -47,14 +47,6 @@ public class FornecedorModel {
 			this.tipoServico = tipoServico;
 		}
 
-		public List<ProdutoModel> getProduto() {
-			return getProduto();
-		}
-
-		public void setProduto(List<ProdutoModel> produto) {
-		}
-
-
-				
+						
 	}
 

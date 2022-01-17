@@ -7,17 +7,24 @@ import javax.validation.Valid;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.testetechsolutio.TechSolutio.model.FornecedorModel;
 import com.testetechsolutio.TechSolutio.model.ProdutoModel;
 
 
-public interface ProdutoRepository extends JpaRepository <ProdutoModel> {
+public interface ProdutoRepository extends JpaRepository<ProdutoModel, Long>  {
 
-	List<com.farmacia.Exercicio.Model.ProdutoModel> findAll();
+	static Object CadastrarProduto(@Valid ProdutoModel novoproduto) {
+		return novoproduto;
+		// TODO Auto-generated method stub
+		
+	}
 
-	Object save(@Valid ProdutoModel novoProduto);
+	static @Valid Optional<ProdutoModel> CadastrarProduto(@Valid Optional<ProdutoModel> novoproduto) {
+		return novoproduto;
+		// TODO Auto-generated method stub
+		
+	}
 
-	Optional<ProdutoModel> findById(Long idProduto);
-
-	void deleteById(Long idProduto);
+	Object save(@Valid Optional<ProdutoModel> novoProduto);
 
 }

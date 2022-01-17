@@ -27,7 +27,7 @@ public class UsuarioService {
 			return Optional.empty();
 		}).orElseGet(() -> {
 			usuario.setSenhaUsuario(encoder.encode(usuario.getSenhaUsuario()));
-			return Optional.ofNullable(repository.saveAll(usuario));
+			return Optional.ofNullable(repository.save(usuario));
 		});
 
 	}

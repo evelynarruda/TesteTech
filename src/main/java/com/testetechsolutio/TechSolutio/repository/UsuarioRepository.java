@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.farmacia.Exercicio.Model.UsuarioModel;
 import com.testetechsolutio.TechSolutio.model.UsuarioLogin;
 import com.testetechsolutio.TechSolutio.model.UsuarioModel;
 import com.testetechsolutio.TechSolutio.repository.UsuarioRepository;
@@ -21,7 +20,7 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
 	
 	public Optional<com.testetechsolutio.TechSolutio.model.UsuarioModel> findByEmailUsuario(String emailUsuario);
 
-	public Object saveAll(@Valid Object usuarioModel);
+	//public Object saveAll(@Valid Object usuarioModel);
 
 
 
