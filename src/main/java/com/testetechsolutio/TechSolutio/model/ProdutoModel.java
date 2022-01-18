@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -32,7 +33,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 		@JsonIgnoreProperties("id_fornecedor")
 		private FornecedorModel idFornecedor;
 		
-		private Long valor;
+		@NotNull
+		private double valor;
 
 		public Long getIdProduto() {
 			return idProduto;
@@ -62,8 +64,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 			return valor;
 		}
 
-		public void setValor(Long valor) {
-			this.valor = valor;
+		public void setValor(double d) {
+			this.valor = d;
 		}
 
 		public Optional<ProdutoModel> map(Optional<ProdutoModel> object) {

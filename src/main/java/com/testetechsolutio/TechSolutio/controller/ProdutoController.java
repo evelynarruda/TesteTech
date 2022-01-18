@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.testetechsolutio.TechSolutio.repository.FornecedorRepository;
 import com.testetechsolutio.TechSolutio.repository.ProdutoRepository;
 import com.testetechsolutio.TechSolutio.service.ProdutoService;
 import com.testetechsolutio.TechSolutio.model.ProdutoModel;
@@ -33,8 +32,10 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoRepository repositorio;
+	@Autowired
+	private ProdutoService service;
 	
-	/*
+	
 	@GetMapping("/todes")
 	public Object GetAll() {
 		if (repositorio.findAll().isEmpty()) {
@@ -42,34 +43,35 @@ public class ProdutoController {
 		} else {
 			return ResponseEntity.status(200).body(repositorio.findAll());
 		}
-	}*/
+	}
 	
-	@PostMapping("/register")
-	public ResponseEntity<Object> registerComment(@RequestBody ProdutoModel novoproduto){
-		return ResponseEntity.status(201).body(repositorio.save(novoproduto));
-		}
-			
+	@PostMapping("/cadastrar")
+	public ResponseEntity<ProdutoModel> salvar(@RequestBody @Valid ProdutoModel novoproduto) {
+		return service.cadastrarProduto(novoproduto).map(resp -> ResponseEntity.status(201).body(novoproduto))
+				.orElseThrow(() -> {
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+							"Produto já existente");
+	});
+
+	}
 				
-		
-	/*@PostMapping("/salvar")
-	public ResponseEntity<Object> salvar(@Valid @RequestBody ProdutoModel novoProduto) {
-        return ResponseEntity.status(201).body(repositorio.save(novoProduto));
-   }*/
-	
 	@PutMapping("/atualizar")
-	public ResponseEntity<Object> atualizar(@Valid @RequestBody Optional<ProdutoModel> novoProduto) {
-		return ResponseEntity.status(201).body(repositorio.save(novoProduto));
+	public ResponseEntity<ProdutoModel> atualizar(@Valid @RequestBody ProdutoModel novoProduto) {
+		return service.atualizarProduto(novoProduto).map(resp -> ResponseEntity.status(201).body(resp))
+				.orElseThrow(() ->{
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+							"Necessário que passe um idUsuario válido");
+				});
 	}
 	
 	@DeleteMapping("/deletar/{id_produto}")
-	public ResponseEntity<ProdutoModel> deletar(@PathVariable(value = "id_produto") Long idProduto) {
-		Optional<ProdutoModel> objetoOptional = repositorio.findById(idProduto);
-		if (objetoOptional.isPresent()) {
+	public ResponseEntity<Object> deletar(@PathVariable(value = "id_produto") Long idProduto) {
+		return repositorio.findById(idProduto).map(resp ->{
 			repositorio.deleteById(idProduto);
-			return ResponseEntity.status(204).build();
-		}
-		else {
-			return ResponseEntity.status(400).build();
-		}
+			return ResponseEntity.status(200).build();
+		}).orElseThrow(() ->{
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					"ID inexistente, passe um ID valido para deletar!.");
+		});
 	}
-	}
+}
