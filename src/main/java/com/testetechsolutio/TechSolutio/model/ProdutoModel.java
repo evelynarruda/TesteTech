@@ -9,12 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 	@Entity
@@ -70,12 +66,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 		public Optional<ProdutoModel> map(Optional<ProdutoModel> object) {
 			return object;
-			// TODO Auto-generated method stub
 			
 		}
 
 		public static Object save(@Valid ProdutoModel novoproduto) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 		

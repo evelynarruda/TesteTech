@@ -53,10 +53,6 @@ public class UsuarioLogin {
 		this.idUsuario = idUsuario;
 	}
 
-	public void setId(long idUsuario2) {
-		// TODO Auto-generated method stub
 		
-	}
-	
 
 }

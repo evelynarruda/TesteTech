@@ -1,13 +1,10 @@
 package com.testetechsolutio.TechSolutio.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.hibernate.annotations.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,13 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
-
 import com.testetechsolutio.TechSolutio.model.FornecedorModel;
-import com.testetechsolutio.TechSolutio.model.ProdutoModel;
 import com.testetechsolutio.TechSolutio.repository.FornecedorRepository;
-import com.testetechsolutio.TechSolutio.service.FornecedorService;
-import com.testetechsolutio.TechSolutio.service.ProdutoService;
 
 @RestController	
 @RequestMapping("/api/v1/fornecedores")
@@ -43,7 +35,7 @@ public class FornecedorController {
 		}
 	}
 	
-	@PostMapping("/register")
+	@PostMapping("/registrar")
 	public ResponseEntity<Object> registerComment(@RequestBody FornecedorModel novofornecedor){
 		return ResponseEntity.status(201).body(repositorio.save(novofornecedor));
 		}
@@ -54,14 +46,15 @@ public class FornecedorController {
 	public ResponseEntity<Object> salvar(@Valid @RequestBody FornecedorModel novaCategoria) {
 		return ResponseEntity.status(201).body(repositorio.save(novaCategoria));
 	}
-	/*
+	
+	
 	@PutMapping("/atualizar")
-	public ResponseEntity<Object> atualizar(@Valid @RequestBody CategoriaModel novoCategoria) {
-		return ResponseEntity.status(201).body(repositorio.save(novoCategoria));
+	public ResponseEntity<Object> atualizar(@Valid @RequestBody FornecedorModel novaCategoria) {
+		return ResponseEntity.status(201).body(repositorio.save(novaCategoria));
 	}
 	
-	@DeleteMapping("/deletar/{id_categoria}")
-	public ResponseEntity<CategoriaModel> deletar(@PathVariable(value = "id_categoria") String idCategoria){
+	@DeleteMapping("/deletar/{id_fornecedor}")
+	public ResponseEntity<FornecedorModel> deletar(@PathVariable(value = "id_fornecedor") String idCategoria){
 		Optional<FornecedorModel> objetoOptional = repositorio.findById(idCategoria);
 		if (objetoOptional.isPresent()) {
 			repositorio.deleteById(idCategoria);
@@ -69,8 +62,5 @@ public class FornecedorController {
 		} else {
 			return ResponseEntity.status(400).build();
 		}
-	}
-	*/
-
-	
+}
 }

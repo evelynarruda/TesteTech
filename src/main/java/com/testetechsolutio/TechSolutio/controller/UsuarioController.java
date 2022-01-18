@@ -22,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.testetechsolutio.TechSolutio.model.UsuarioModel;
 import com.testetechsolutio.TechSolutio.model.UsuarioLogin;
 import com.testetechsolutio.TechSolutio.repository.UsuarioRepository;
+import com.testetechsolutio.TechSolutio.service.UsuarioService;
 	
 @RestController
 @RequestMapping("/api/v1/usuarios")
@@ -32,7 +33,7 @@ public class UsuarioController {
 	private UsuarioRepository repositorio;
 	
 	@Autowired
-	private com.testetechsolutio.TechSolutio.service.UsuarioService usuarioService;
+	private UsuarioService usuarioService;
 
 	@GetMapping("/todes")
 	public ResponseEntity<List<UsuarioModel>> getAll() {
@@ -73,7 +74,7 @@ public class UsuarioController {
 		}
 	}
 
-	@PostMapping("/logar")
+	@PostMapping("/login")
 	public ResponseEntity<UsuarioModel> Authentication(@RequestBody Optional<UsuarioLogin> user) {
 		return usuarioService.Logar(user).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());

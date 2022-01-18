@@ -1,19 +1,12 @@
 package com.testetechsolutio.TechSolutio.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.CascadeType;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -29,7 +22,7 @@ public class FornecedorModel {
 		private String tipoServico;
 
 		@OneToMany(mappedBy = "idfornecedor", cascade = javax.persistence.CascadeType.ALL)
-		@JsonIgnoreProperties("idfornecedor")
+		@JsonIgnoreProperties
 			
 		public Long getIdFornecedor() {
 			return idFornecedor;

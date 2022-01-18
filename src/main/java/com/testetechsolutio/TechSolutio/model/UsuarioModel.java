@@ -7,15 +7,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 
 @Entity
 @Table(name = "tb_usuario")
 public class UsuarioModel {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue	(strategy = GenerationType.IDENTITY)
 	private long idUsuario;
+	
 	
 	@NotBlank
 	@Size(min = 5, max = 50)
@@ -25,11 +30,9 @@ public class UsuarioModel {
 	@Size(min = 5, max = 50)
 	private String sobrenomeUsuario;
 	
-	//@BeanProperty
-	@Email(message = "Email inválido!")
-	@NotBlank(message = "O atributo Usuário é Obrigatório!")
-	@Size(min = 5, max = 50)
-	private String emailUsuario;
+	
+	private @NotNull 
+	@Email String emailUsuario;
 	
 	@NotBlank
 	@Size(min = 5, max = 100)
