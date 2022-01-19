@@ -19,47 +19,32 @@ public class UserDetailsImpl implements UserDetails {
 
 	
 	private static final long serialVersionUID = 1L;
+	private String email;
+	private String senha;
+	private List<GrantedAuthority> autorizacoes;
 	
-	private String username;
-	private String password;
-	private List<GrantedAuthority> authorities;
-	
-	public  UserDetailsImpl(UsuarioModel usuarioModel) {
-		this.username(usuarioModel.getEmailUsuario());
-		this.password(usuarioModel.getSenhaUsuario());
-	}
-
-	
-	
-
-	private void password(String senhaUsuario) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void username(String emailUsuario) {
-		// TODO Auto-generated method stub
-		
+	public void UserDetailsImplements(UsuarioModel usuario) {
+		this.email = usuario.getEmailUsuario();
+		this.senha = usuario.getSenhaUsuario();
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return authorities;
+		return autorizacoes;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return senha;
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return username;
+		return email;
 	}
-	
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return password;
-	}
-
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -85,7 +70,4 @@ public class UserDetailsImpl implements UserDetails {
 		return true;
 	}
 
-
-
 }
-

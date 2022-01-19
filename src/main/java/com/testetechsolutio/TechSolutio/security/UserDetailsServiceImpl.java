@@ -16,15 +16,19 @@ import com.testetechsolutio.TechSolutio.repository.UsuarioRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
-	private UsuarioRepository repository;
+	private UsuarioRepository repositorio;
 
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Optional<UsuarioModel> optional = repository.findByEmailUsuario(email);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		optional.orElseThrow(() -> new UsernameNotFoundException(email + " not found."));
+		Optional<UsuarioModel> objetoOptional = repositorio.findByEmailUsuario(username);
 		
-		return optional.map(UserDetailsImpl::new ).get();
-
+		if (objetoOptional.isPresent()) {
+			return new UserDetailsImpl();
+		} else {
+			throw new UsernameNotFoundException(username + " Não existe!");
+		}
+		
+	
 }
 }

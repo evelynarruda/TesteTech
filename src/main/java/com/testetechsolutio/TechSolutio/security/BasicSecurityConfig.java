@@ -30,7 +30,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.GET, "/api/v1/usuarios/todes").permitAll()
 		.antMatchers(HttpMethod.POST, "/api/v1/usuarios/cadastrar").permitAll()
 		.antMatchers(HttpMethod.POST,"/api/v1/usuarios/logar").permitAll()
-		.antMatchers(HttpMethod.PUT, "/api/v1/user/credentials").permitAll()
+		.antMatchers(HttpMethod.PUT, "/api/v1/user/credenciais").permitAll()
 		.anyRequest().authenticated()
 		.and().httpBasic()
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -48,4 +48,6 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 }
+
+
 
