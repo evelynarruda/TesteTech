@@ -32,7 +32,7 @@ public class UsuarioService {
 
 	}
 
-	public Optional<UsuarioModel> Logar(Optional<UsuarioLogin> user) {
+	public Optional<UsuarioLogin> Logar(Optional<UsuarioLogin> user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		Optional<UsuarioModel> usuario = repository.findByEmailUsuario(user.get().getEmail());
 
@@ -48,9 +48,10 @@ public class UsuarioService {
 				user.get().setSenha(usuario.get().getSenhaUsuario());
 				user.get().setEmail(usuario.get().getEmailUsuario());
 				
-				return usuario;
+				return user;
 			}
 		}
 		return null;
 	}
+
 }

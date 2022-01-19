@@ -2,8 +2,8 @@ package com.testetechsolutio.TechSolutio.model;
 
 public class UsuarioLogin {
 	
-	private long idUsuario;
-
+	private Long idUsuario;
+	
 	private String nome;
 	
 	private String email;
@@ -44,15 +44,11 @@ public class UsuarioLogin {
 		this.token = token;
 	}
 
-	public long getIdUsuario() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Long getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setIdUsuario(long idUsuario) {
+	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-
 		
-
-}
+	}}

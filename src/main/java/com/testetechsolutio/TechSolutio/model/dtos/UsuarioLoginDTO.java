@@ -8,13 +8,18 @@ class UsuarioLoginDTO {
 	
 
 		private @NotBlank @Email(message = "Campo deve ser um email") String email; 
-		private @NotBlank @Size(min = 5, max = 15, message = "Senha deve ter de 5 a 15 caracteres") String senha;
-		private String token;
-		
+		public String getEmail() {
+			return email;
+		}
+
 		public void setEmail(String email) {
 			this.email = email;
 		}
 
+		private @NotBlank @Size(min = 5, max = 15, message = "Senha deve ter de 5 a 15 caracteres") String senha;
+		private String token;
+		
+		
 		public String getSenha() {
 			return senha;
 		}

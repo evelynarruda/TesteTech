@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.testetechsolutio.TechSolutio.model.UsuarioLogin;
 import com.testetechsolutio.TechSolutio.model.UsuarioModel;
 import com.testetechsolutio.TechSolutio.repository.UsuarioRepository;
 
@@ -21,11 +22,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Optional<UsuarioModel> optional = repository.findByEmailUsuario(email);
 		
-		if (optional.isPresent()) {
-			return new UserDetailsImpl(optional.get());
-		} else {
-			throw new UsernameNotFoundException(email + " Não cadastrado!");
-		}
+		optional.orElseThrow(() -> new UsernameNotFoundException(email + " not found."));
+		
+		return optional.map(UserDetailsImpl::new ).get();
 
 }
 }
