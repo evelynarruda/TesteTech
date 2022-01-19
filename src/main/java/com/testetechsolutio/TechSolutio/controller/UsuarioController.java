@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.generation.BlogPessoal.model.Usuario;
 import org.hibernate.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,10 +26,6 @@ import com.testetechsolutio.TechSolutio.model.dtos.CredenciaisDTO;
 import com.testetechsolutio.TechSolutio.model.dtos.UsuarioLoginDTO;
 import com.testetechsolutio.TechSolutio.repository.UsuarioRepository;
 import com.testetechsolutio.TechSolutio.service.UsuarioService;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 	
 @RestController
 @RequestMapping(value = "/api/v1/usuarios")
@@ -54,6 +49,12 @@ public class UsuarioController {
                             "Usuario existente, cadastre outro usuário!");
                 });
     }
+	
+	@PostMapping("/login")
+	public ResponseEntity<UsuarioModel> Autentication(@Valid @RequestBody Optional<UsuarioLoginDTO> usuario){
+		return usuarioService.logar(usuario).map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+	}
 	
 	@GetMapping("/todes")
 	public ResponseEntity<List<UsuarioModel>> pegarTodes() {

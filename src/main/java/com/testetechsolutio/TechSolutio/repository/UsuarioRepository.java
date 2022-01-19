@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
-
-import com.testetechsolutio.TechSolutio.controller.Usuario;
-import com.testetechsolutio.TechSolutio.model.UsuarioLogin;
 import com.testetechsolutio.TechSolutio.model.UsuarioModel;
 import com.testetechsolutio.TechSolutio.model.dtos.UsuarioLoginDTO;
 import com.testetechsolutio.TechSolutio.repository.UsuarioRepository;
