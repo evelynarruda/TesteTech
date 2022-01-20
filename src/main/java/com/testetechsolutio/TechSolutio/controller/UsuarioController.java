@@ -1,11 +1,8 @@
 package com.testetechsolutio.TechSolutio.controller;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.validation.Valid;
 
-import org.hibernate.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -50,12 +46,6 @@ public class UsuarioController {
                 });
     }
 	
-	@PostMapping("/login")
-	public ResponseEntity<UsuarioModel> Autentication(@Valid @RequestBody Optional<UsuarioLoginDTO> usuario){
-		return usuarioService.logar(usuario).map(resp -> ResponseEntity.ok(resp))
-				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
-	}
-	
 	@GetMapping("/todes")
 	public ResponseEntity<List<UsuarioModel>> pegarTodes() {
 		List<UsuarioModel> objetoLista = repositorio.findAll();
@@ -87,7 +77,7 @@ public class UsuarioController {
 
 	}
 	
-
+	
 	@PutMapping("/credenciais")
 	public ResponseEntity<CredenciaisDTO> credenciais(@Valid @RequestBody UsuarioLoginDTO usuarioParaAutenticar) {
 		return usuarioService.pegarCredenciais(usuarioParaAutenticar);
@@ -114,6 +104,7 @@ public class UsuarioController {
 					"ID inexistente, passe um ID valido para deletar!.");
 		});
 	}
+	
 }
 	
 	

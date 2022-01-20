@@ -3,8 +3,6 @@ package com.testetechsolutio.TechSolutio.service;
 import java.nio.charset.Charset;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -87,6 +85,11 @@ public class UsuarioService {
 	}
 
 	public Optional<UsuarioModel> logar(Optional<UsuarioLoginDTO> usuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ResponseEntity<UsuarioModel> getProfile(String token) {
 		// TODO Auto-generated method stub
 		return null;
 	}
